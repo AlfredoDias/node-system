@@ -1,5 +1,5 @@
 import "express-async-errors";
-import express, { NextFunction, request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import { routes } from "./routes";
 import { appError } from "./errors/appError";
 
@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.use(routes);
 
-app.use((err: Error, request:request, response: Response, next: NextFunction) => {
+app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
     if (err instanceof appError) {
         return response.status(err.statusCode).json({
             status: "Error",
