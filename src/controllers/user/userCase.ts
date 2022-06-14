@@ -1,5 +1,6 @@
 import { User } from "@prisma/client";
 import { userCaseDto } from "../../dtos/userCaseDto";
+import { appError } from "../../errors/appError";
 import { prisma } from "../../prisma/client";
 
 export class userCase {
@@ -14,6 +15,8 @@ export class userCase {
 
         if (userAlreadyExists) {
             // Erro
+            throw new appError("User already exists");
+            
         }
 
         // Criar o usuário
